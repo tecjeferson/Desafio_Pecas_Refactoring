@@ -165,7 +165,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Pecas\index.cshtml" />
+    <Content Include="Views\Pecas\Index.cshtml" />
     <Content Include="Views\Pecas\Create.cshtml" />
     <Content Include="Views\Pecas\Delete.cshtml" />
     <Content Include="Views\Pecas\Edit.cshtml" />
