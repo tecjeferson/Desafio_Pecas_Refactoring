@@ -1,0 +1,58 @@
+﻿@model LojaAutoPecas.Models.Pecas
+
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Auto items list</h1>
+
+@Html.ActionLink("Create", "Create", new { }, htmlAttributes: new { @class = "btn btn-primary" })
+
+
+
+<table class="table">
+    <thead>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        @if (@item.InStock == true)
+                        {
+                            <td>In Stock</td>
+                        }
+                        else
+                        {
+                            <td>Out of Stock</td>
+                        }
+                        <td>
+
+                            @Html.ActionLink("Delete", "Delete", new { item.Id }, htmlAttributes: new { @class = "btn btn-danger" })
+                            @Html.ActionLink("Edit", "Edit", new { item.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+
+
+                }
+
+            </tbody>
+
+        </table>
+
+
