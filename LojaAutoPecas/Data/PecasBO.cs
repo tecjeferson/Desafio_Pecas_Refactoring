@@ -190,5 +190,62 @@ namespace LojaAutoPecas.Data
             }
         }
 
+        public Pecas Search(int? id, string name, string description )
+        {
+            try
+            {
+                Pecas pc = new Pecas();
+
+                string connectionString = GetConnectionString();
+                //Mudar e incluir LIKE
+                string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id OR NAME = @name OR DESCRIPTION = @description";
+
+                SqlConnection sqlConnection = new SqlConnection(connectionString);
+                sqlConnection.Open();
+
+                using (SqlCommand command = new SqlCommand(SqlCommand, sqlConnection))
+                {
+                    //depois que o ID estiver funcionando adicionar name e description
+                    if(id != null)
+                    {
+                        command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    }
+                    else if(name != null){
+                        command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                    }
+                    else
+                    {
+                        command.Parameters.Add("@description", SqlDbType.VarChar).Value = description;
+                    }
+                    
+                    
+
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+
+                    while (reader.Read())
+                    {
+                        pc.Id = Convert.ToInt32(reader["Id"]);
+                        pc.Name = reader["Name"].ToString();
+                        pc.Description = reader["Description"].ToString();
+                        pc.Price = Convert.ToInt32(reader["Price"]);
+                        pc.InStock = Convert.ToBoolean(reader["InStock"]);
+
+                    }
+
+                }
+                sqlConnection.Close();
+                return pc;
+            }
+
+
+            catch (Exception err)
+            {
+                throw err;
+            }
+
+        }
+
     }
 }

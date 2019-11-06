@@ -145,7 +145,6 @@ C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\bin\System.W
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\bin\Newtonsoft.Json.xml
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\bin\Antlr3.Runtime.pdb
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\obj\Debug\LojaAutoPecas.csprojAssemblyReference.cache
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\obj\Debug\LojaAutoPecas.csproj.CopyComplete
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\obj\Debug\LojaAutoPecas.dll
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\obj\Debug\LojaAutoPecas.pdb

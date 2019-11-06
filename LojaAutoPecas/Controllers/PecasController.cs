@@ -23,6 +23,27 @@ namespace LojaAutoPecas.Controllers
             return View(ListItem);
         }
 
+        [HttpPost]
+        public string Index( int? id, string name, string description)
+        {
+            
+
+
+            if (id != null)
+            {
+                return "<h3> From [HttpPost]Index: " + id + "</h3>";
+            }
+            else if (name != null)
+            {
+                return "<h3> From [HttpPost]Index: " + name + "</h3>";
+            }
+            else
+            {
+                return "<h3> From [HttpPost]Index: " + description + "</h3>";
+            }
+
+        }
+
         // GET: Pecas/Details/5
 
         [HttpGet]
@@ -43,6 +64,8 @@ namespace LojaAutoPecas.Controllers
             return View();
 
         }
+
+     
 
         [HttpPost]
         public ActionResult Create(Pecas pecas)

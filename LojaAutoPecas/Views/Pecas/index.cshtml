@@ -5,8 +5,21 @@
 }
 
 <h1>Auto items list</h1>
+<br />
+<br />
 
-@Html.ActionLink("Create", "Create", new { }, htmlAttributes: new { @class = "btn btn-primary" })
+<div class="row">
+    <div class="col">
+        @using (Html.BeginForm())
+        {
+            <p>Id: @Html.TextBox("id")</p>
+            <p>Name: @Html.TextBox("name")</p>
+            <p>description: @Html.TextBox("description")</p>
+            <input type="submit" value="OK" />
+        }
+    </div>
+</div>
+
 
 
 
@@ -54,4 +67,6 @@
 
         </table>
 
-
+        <br />
+        <br />
+        @Html.ActionLink("Add Item", "Create", new { }, htmlAttributes: new { @class = "btn btn-primary" })
