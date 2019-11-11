@@ -23,24 +23,23 @@ namespace LojaAutoPecas.Controllers
             return View(ListItem);
         }
 
-        [HttpPost]
-        public string Index( int? id, string name, string description)
+        [HttpGet]
+        public ActionResult SearchResult()
         {
+            var ListItem = pbo.GetPecas().ToList();
+
+           return View(ListItem);
+        }
+
+        [HttpPost]
+        public ActionResult SearchResult(PecasBO model)
+        {
+
+            var ListItens = pbo.Search(model).ToList();
+
             
-
-
-            if (id != null)
-            {
-                return "<h3> From [HttpPost]Index: " + id + "</h3>";
-            }
-            else if (name != null)
-            {
-                return "<h3> From [HttpPost]Index: " + name + "</h3>";
-            }
-            else
-            {
-                return "<h3> From [HttpPost]Index: " + description + "</h3>";
-            }
+                return View(ListItens);
+            
 
         }
 

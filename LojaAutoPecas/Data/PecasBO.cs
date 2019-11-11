@@ -190,15 +190,15 @@ namespace LojaAutoPecas.Data
             }
         }
 
-        public Pecas Search(int? id, string name, string description )
+        public List<Pecas> Search(PecasBO model)
         {
+            List<Pecas> pecas = new List<Pecas>();
             try
             {
-                Pecas pc = new Pecas();
-
                 string connectionString = GetConnectionString();
-                //Mudar e incluir LIKE
-                string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id OR NAME = @name OR DESCRIPTION = @description";
+                //string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id OR NAME = @name OR DESCRIPTION = @description";
+                //string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id";
+                string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE NAME LIKE '@name%'";
 
                 SqlConnection sqlConnection = new SqlConnection(connectionString);
                 sqlConnection.Open();
@@ -206,37 +206,27 @@ namespace LojaAutoPecas.Data
                 using (SqlCommand command = new SqlCommand(SqlCommand, sqlConnection))
                 {
                     //depois que o ID estiver funcionando adicionar name e description
-                    if(id != null)
-                    {
-                        command.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                    }
-                    else if(name != null){
-                        command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
-                    }
-                    else
-                    {
-                        command.Parameters.Add("@description", SqlDbType.VarChar).Value = description;
-                    }
+                   
+                   
+                                     
                     
-                    
-
-
                     SqlDataReader reader = command.ExecuteReader();
-
 
                     while (reader.Read())
                     {
-                        pc.Id = Convert.ToInt32(reader["Id"]);
-                        pc.Name = reader["Name"].ToString();
-                        pc.Description = reader["Description"].ToString();
-                        pc.Price = Convert.ToInt32(reader["Price"]);
-                        pc.InStock = Convert.ToBoolean(reader["InStock"]);
+                        Pecas _pecas = new Pecas();
 
+                        _pecas.Id = Convert.ToInt32(reader["Id"]);
+                        _pecas.Name = reader["Name"].ToString();
+                        _pecas.Description = reader["Description"].ToString();
+                        _pecas.Price = Convert.ToInt32(reader["Price"]);
+                        _pecas.InStock = Convert.ToBoolean(reader["InStock"]);
+                        pecas.Add(_pecas);
                     }
 
                 }
                 sqlConnection.Close();
-                return pc;
+                return (pecas);
             }
 
 

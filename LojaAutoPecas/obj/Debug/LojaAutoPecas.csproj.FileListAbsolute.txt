@@ -148,3 +148,4 @@ C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\bin\Microsof
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\obj\Debug\LojaAutoPecas.csproj.CopyComplete
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\obj\Debug\LojaAutoPecas.dll
 C:\Users\jefbg\Source\Repos\Desafio_Pecas_Refactoring\LojaAutoPecas\obj\Debug\LojaAutoPecas.pdb
+C:\Users\jefbg\source\repos\Desafio_Pecas_Refactoring\LojaAutoPecas\obj\Debug\LojaAutoPecas.csprojAssemblyReference.cache

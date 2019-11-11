@@ -169,6 +169,7 @@
     <Content Include="Views\Pecas\Create.cshtml" />
     <Content Include="Views\Pecas\Delete.cshtml" />
     <Content Include="Views\Pecas\Edit.cshtml" />
+    <Content Include="Views\Pecas\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

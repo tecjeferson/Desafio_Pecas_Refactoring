@@ -1,12 +1,13 @@
 ﻿@model List<LojaAutoPecas.Models.Pecas>
+
 @{
-    ViewBag.Title = "index";
+    ViewBag.Title = "SearchResult";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Auto items list</h1>
-<br />
-<br />
+<h2>SearchResult</h2>
+
+
 
 <div class="row">
     <div class="col">
@@ -20,10 +21,6 @@
     </div>
 </div>
 
-@foreach(var item in Model)
-{
-    @item.Name
-}
 
 
 <table class="table">
