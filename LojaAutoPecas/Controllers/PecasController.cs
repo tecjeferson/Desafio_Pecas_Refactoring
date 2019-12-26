@@ -32,13 +32,13 @@ namespace LojaAutoPecas.Controllers
         }
 
         [HttpPost]
-        public ActionResult SearchResult(PecasBO model)
+        public ActionResult SearchResult(string name, string description, int? id)
         {
 
-            var ListItens = pbo.Search(model).ToList();
+            var ListItens = pbo.Search(name, description, id).ToList();
 
             
-                return View(ListItens);
+            return View(ListItens);
             
 
         }

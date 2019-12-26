@@ -190,26 +190,65 @@ namespace LojaAutoPecas.Data
             }
         }
 
-        public List<Pecas> Search(PecasBO model)
+        public List<Pecas> Search(string name, string description, int? id)
         {
             List<Pecas> pecas = new List<Pecas>();
+
+           
             try
             {
                 string connectionString = GetConnectionString();
                 //string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id OR NAME = @name OR DESCRIPTION = @description";
                 //string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id";
-                string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE NAME LIKE '@name%'";
+
+                string query = "select * from PecasAuto";
+                //if (id >= 0 && name != null && description != null)
+                //{
+                //    query = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id";
+                //}
+                //else if(id == null && name != null && description != null)
+                //{
+                //    query = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE NAME = @name AND DESCRIPTION = @description";
+                //}
+                if (id >= 0)
+                {
+                    query =  @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id";
+                }
+                else if(id == null && !string.IsNullOrEmpty(name))
+                {
+                    query = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE NAME LIKE '%' + @name + '%'";
+                    //string SqlCommand = @"UPDATE PecasAuto SET NAME = @NAME, DESCRIPTION = @DESCRIPTION, PRICE = @PRICE, INSTOCK = @INSTOCK WHERE ID = @ID";
+
+                }
+                else if(id == null && string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description))
+                {
+                    query = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE DESCRIPTION = @description";
+                }
+                
+                
+                
 
                 SqlConnection sqlConnection = new SqlConnection(connectionString);
                 sqlConnection.Open();
 
-                using (SqlCommand command = new SqlCommand(SqlCommand, sqlConnection))
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
                     //depois que o ID estiver funcionando adicionar name e description
-                   
-                   
-                                     
-                    
+
+                    if (id >= 0)
+                    {
+                        command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    }
+                    else if (!string.IsNullOrEmpty(name))
+                    {
+                        command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                    }
+                    else if (!string.IsNullOrEmpty(description))
+                    {
+                        command.Parameters.Add("@description", SqlDbType.VarChar).Value = description;
+
+                    }
+                 
                     SqlDataReader reader = command.ExecuteReader();
 
                     while (reader.Read())
@@ -226,7 +265,7 @@ namespace LojaAutoPecas.Data
 
                 }
                 sqlConnection.Close();
-                return (pecas);
+                return pecas;
             }
 
 
